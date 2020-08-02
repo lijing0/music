@@ -1,0 +1,113 @@
+.rank{
+    font-size: 20px;
+}
+.rank .bgImg{
+    width: 100%;
+    height: 2.92rem;
+}
+.bgImg{
+    background: url(../../assets/images/hot_music_bg_2x.jpg) no-repeat;
+    background-size: 7.5rem 2.9rem;
+}
+.bgImg .hot {
+    position: relative;
+    left: .4rem;
+    top: .6rem;
+    width: 142px;
+    height: 67px;
+    background: url(../../assets/images/icon.png) no-repeat;
+    background-position: -24px -30px;
+    background-size: 166px 97px;
+}
+.hotTime {
+    margin-top: .8rem;
+    margin-left: .4rem;
+    color: hsla(0, 0%, 100%, .8);
+    font-size: 12px;
+    -webkit-transform: scale(.91);
+    -ms-transform: scale(.91);
+    transform: scale(.91);
+    -webkit-transform-origin: left top;
+    -ms-transform-origin: left top;
+    transform-origin: left top;
+}
+.content{
+    width: 7.5rem;
+    height: 1.08rem;
+}
+.content .con_left {
+    width: .8rem;
+    height: 1.08rem;
+    line-height: 1.08rem;
+    text-align: center;
+    float: left;
+    color: #df3436;
+    font-size: 17px;
+}
+.content .con_left1 {
+    width: .8rem;
+    height: 1.08rem;
+    line-height: 1.08rem;
+    text-align: center;
+    float: left;
+    color: #999;
+    font-size: 17px;
+}
+.content .center {
+    width: 5.86rem;
+    line-height: 1.2;
+    float: left;
+}
+.content .center .top{
+    font-size: 17px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-break: normal;
+    margin-top: .2rem;
+}
+.content .center .bottom{
+    margin-top: .1rem;
+    font-size: 12px;
+    color: #888;
+}
+.content .right {
+    float: right;
+}
+.u-hmsprt {
+    background: url(../../assets/images/icon.png) no-repeat;
+    background-size: 166px 97px;
+}
+
+.sghot {
+    display: inline-block;
+    width: 12px;
+    height: 8px;
+    margin-right: 4px;
+}
+ .sgchply{
+     margin-top: .3rem;
+     display: inline-block;
+     width: 22px;
+     height: 22px;
+     background-position: -24px 0;
+ }
+ .line{
+     margin-left: .7rem;
+     width: 6.7rem;
+     height: 1.08rem;
+     border-bottom: 1px solid #e0e0e0;
+ }
+ .alllist{
+     text-align: center;
+ }
+ .alllist span{
+    display: inline-block;
+    width: 1.96rem;
+    height: 1.08rem;
+    line-height: 1.08rem;
+    text-align: center;
+    font-size: 14px;
+    color: #999;
+    padding: 0 14px 0 0;
+ }

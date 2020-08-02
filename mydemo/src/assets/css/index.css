@@ -1,0 +1,61 @@
+.index{
+    background: #fff;
+}
+.index .title{
+    float: left;
+    width: 100%;
+    height: 1.68rem;
+    background: #D43c33;
+}
+.index .title .tName{
+    line-height: 1.68rem;
+    font-size: 20px;
+    color: #fff;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+.index .tabBar{
+    height: 0.8rem;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 17px;
+    display: flex;
+    width: 100%;
+    line-height: 0.8rem;
+}
+.index .tabBar a{
+    text-decoration: none;
+    flex: 1;
+    color:#333;
+    text-align:center;
+}
+.index .select{
+    color: #DD001B !important;
+}
+.index .select span {
+    display: inline-block;
+    height: .8rem;
+    line-height: .8rem;
+    box-sizing: border-box;
+    border-bottom: 2px solid #DD001B;
+}
+.index .titImg{
+    width: 0.5rem;
+    height: 0.5rem;
+    line-height: 1.68rem;
+    margin-left: 20px;
+    /* vertical-align: -4px; */
+    vertical-align: middle;
+}
+.index .download span{
+    float: right;
+    width: 2rem;
+    height: .72rem;
+    line-height: .72rem;
+    background: #fff;
+    border-radius: .5rem;
+    margin-top: -1.2rem;
+    margin-right: .2rem;
+    font-size: 16px;
+    color: #DD001B;
+    text-align: center;
+}

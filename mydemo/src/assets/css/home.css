@@ -1,0 +1,146 @@
+.home{
+    font-size: 20px;
+}
+.home .home_title{
+    position: relative;
+    padding-left: 9px;
+    margin: 14px 0;
+    font-size: 17px;
+    height: 20px;
+    line-height: 20px;
+    font-weight: normal;
+    border-left: 2px solid #D43C33;
+}
+.songTable{
+    width: 7.5rem;
+    height: 7rem;  
+}
+.item{
+    position: relative;
+    float: left;
+    width: 2.46rem;
+    height: 3.2rem;
+    margin-bottom: 15px;
+    margin-right: 2px;
+    /* display: flex;
+    justify-content: space-between; */
+}
+.item img{
+    width: 2.46rem;
+    height: 2.46rem;
+    vertical-align: middle;
+}
+.item span{
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    padding: 6px 2px 0 6px;
+    min-height: 30px;
+    line-height: 1.2;
+    font-size: 13px;
+}
+.item .num{
+    position: absolute;
+    right: 5px;
+    top: -4px;
+    z-index: 3;
+    padding-left: 13px;
+    color: #fff;
+    font-size: 12px;
+    background-position: 0;
+    background-repeat: no-repeat;
+    background-size: 11px 10px;
+    text-shadow: 1px 0 0 rgba(0, 0, 0, .15);
+}
+.u-hmsprt{
+    background: url(../../assets/images/icon.png) no-repeat;
+    background-size: 166px 97px;
+}
+.sghot {
+    display: inline-block;
+    width: 12px;
+    height: 8px;
+    margin-right: 4px;
+}
+ .sgchply {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    background-position: -24px 0;
+}
+.sgtl {
+    font-size: 17px;
+}
+
+.f-thide {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-break: normal;
+}
+.sginfo {
+    font-size: 12px;
+    color: #888;
+}
+
+.f-thide {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-break: normal;
+}
+.con{
+    height: 1.08rem;
+    border-bottom: 1px solid #e0e0e0;
+}
+.con .left{
+    padding: 6px;
+    float: left;
+    line-height: 1.4;
+}
+.con .right{
+    float: right;
+    height: 1.08rem;
+}
+.con .right span{
+    padding: 0 10px;
+    margin-top: 0.3rem;
+}
+.footer{
+    position: absolute;
+    width: 7.5rem;
+    height: 4rem;
+    background: url(../../assets/images/index_footer.png) no-repeat;
+    background-size: 7.5rem 4rem;
+}
+.footer .tit{
+    position: relative;
+    top: 1.3rem;
+    left: 1.5rem;
+    width: 4.6rem;
+    height: 0.88rem;
+    background: url(../../assets/images/tit.png) no-repeat;
+    background-size: 4.6rem 0.88rem;
+}
+.openapp {
+    width: 6.02rem;
+    height: .8rem;
+    line-height: 38px;
+    border: 1px solid #d33a31;
+    border-radius: 38px;
+    font-size: 16px;
+    color: #d33a31;
+    margin-top:1.6rem;
+    margin-left: .8rem;
+    text-align: center;
+}
+.footer p{
+    color: #888;
+    font-size: 12px;
+    line-height: 16px;
+    -webkit-transform: scale(.75);
+    -ms-transform: scale(.75);
+    transform: scale(.75);
+    text-align: center;
+    }
