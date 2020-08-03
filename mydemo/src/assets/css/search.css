@@ -1,5 +1,5 @@
 body{
-    background: #fff;
+    background: #FCFCFD;
 }
 .form{
     position: relative;
@@ -46,9 +46,9 @@ body{
     background-repeat: no-repeat;
 }
 .hotList{
-    width: 7.5rem;
+    width: 7.2rem;
     height: 4rem;
-    padding: 15px 10px 0;
+    padding: 0.15rem 0.1rem 0;
 }
 .hotList .hotTit {
     font-size: 12px;
@@ -77,4 +77,58 @@ body{
 .hotList .list .item a{
     font-family: Helvetica,sans-serif;
     color: #333;
+}
+.cancel{
+    position: absolute;
+    right:.4rem;
+    top: .46rem;
+    display: inline-block;
+    width: 0.28rem;
+    height: 0.28rem;
+    background: #c0c0c0;
+    border-radius: 50%;
+    color: #f3f3f3;
+}
+.cancel i{
+    position: relative;
+    right:0;
+    top: -.46rem;
+}
+.hotSearchlist{
+    width: 7.5rem;
+}
+.hotSearchlist li{
+    margin-left: 0.5rem;
+    width: 7rem;
+    height: 0.9rem;
+    line-height: 0.9rem;
+}
+.hotSearchlist li i {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    margin-right: 7px;
+}
+.hotSearchlist li .hotitem {
+    width: 6.5rem;
+    height: 0.9rem;
+    line-height: 0.9rem;
+    font-size: 15px;
+    color: #333;
+    display: inline-block;
+    border-bottom: 1px solid #e0e0e0;
+}
+.u-svg-search {
+    width: 15px;
+    height: 15px;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMCAzMCI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBmaWxsPSIjMDQwMDAwIiBkPSJNMjguMTgxIDI3LjUzNWwtMS40MTQgMS40MTQtNy43NTUtNy43NTRBMTEuNDQ1IDExLjQ0NSAwIDAgMSAxMS41IDI0QzUuMTQ5IDI0IDAgMTguODUyIDAgMTIuNSAwIDYuMTQ5IDUuMTQ5IDEgMTEuNSAxIDE3Ljg1MiAxIDIzIDYuMTQ5IDIzIDEyLjVjMCAyLjc1Ni0uOTczIDUuMjg1LTIuNTg5IDcuMjY2bDcuNzcgNy43Njl6TTExLjUgM2E5LjUgOS41IDAgMSAwIDAgMTkgOS41IDkuNSAwIDAgMCAwLTE5eiIgb3BhY2l0eT0iLjMiLz48L3N2Zz4=);
+}
+
+.u-svg {
+    display: inline-block;
+    vertical-align: middle;
+    background-position: 0 0;
+    background-size: contain;
+    background-repeat: no-repeat;
 }

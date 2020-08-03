@@ -21,21 +21,58 @@ import '../../assets/css/play.css'
             let queryStr = this.props.location.search.slice(1)
             let obj = qs.parse(queryStr)
             return (<div className='play'>
-                <h1>播放页面</h1>
-                <div>
-                    <button onClick={()=>this.props.history.go(-1)}>返回</button>
+                <div className="m-song">
+                    <div className="m-newsong">
+                        <div className="m-song-bg">
+                            <div className="m-scroll_wrapper m-song_nor j-songsrl">
+                                <div>
+                                    <div className="m-song_newfst">
+                                        <div>
+                                            <div className="m-song-wrap">
+                                                <div className="m-song-disc">
+                                                    <div className="m-song-turn">
+                                                        <div className="m-song-rollwrap">
+                                                            <div className="m-song-img ">
+                                                                < img className="u-img" src = "https://p1.music.126.net/7gmezveSn1Y31wDJKn-8CQ==/109951165181209954.jpg?imageView&thumbnail=360y360&quality=75&tostatic=0"
+                                                                alt = "" / >
+                                                            </div>
+                                                            <div className="m-song-lgour">
+                                                                <div className="m-song-light "></div>
+                                                            </div>
+                                                        </div>
+                                                        <span className="m-song-plybtn"></span>
+                                                    </div>
+                                                    <div className="m-song-clickarea"></div>
+                                                </div>
+                                                {/* 歌词 */}
+                                                <div>
+                                                    <div className="m-song-info">
+                                                        < h2 className = "m-song-h2" >
+                                                            <span className="m-song-sname">致我们终将逝去的青春 (2020重唱版)</span>
+                                                            <span className="m-song-gap">-</span>
+                                                            <b className="m-song-autr">张靓颖</b>
+                                                        </h2>
+                                                        <div className="m-song-lrc f-pr">
+                                                            <div className="m-song-scroll">
+                                                                <div className="m-song-iner">
+                                                                <p className="m-song-lritem j-lritem">荼蘼还没凋零 提醒我 紧紧抱着你</p>
+                                                                <p className="m-song-lritem j-lritem">世界还在下雨 嘲笑着 晴天的远行</p>
+                                                            </div>
+                                                            
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                {/* 动态路由接收参数 */}
-                <h2>当前歌曲id是---{this.props.match.params.id}</h2>
-                {/* 接收query参数 */}
-                {/* 第一种方法 利用原生js获取参数 */}
-                {/* 第二个方法 利用node原生API */}
-                <h2>
-                    query接收id是---{obj.id}---
-                    query接收name是---{obj.name}
-                </h2>
-                 {/* state接收参数
-                 <h2>state接收id是---{this.props.location.state.id}</h2> */}
+                
             </div>)
         }
 }

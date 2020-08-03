@@ -1,111 +1,147 @@
 import React from 'react'
+// 引入axios库
+import axios from 'axios'
+// 引入接口
+import {personalized,banner,getNewSongs} from '../../util/axios'
+//引入swipercss
+import 'swiper/css/swiper.min.css'
+import 'swiper/js/swiper.min.js'
+//调用swiper插件
+import Swiper from 'swiper'
 import '../../assets/css/home.css'
  class Home extends React.Component{
      constructor(){
          super()
-         this.List = {
-             songInfo:[
-                 {
-                     id:1,
-                     img:require('../../assets/images/songlist1.jpg'),
-                     tit: '[VIP专享] 一周新歌推荐',
-                     num:'3.4亿'
-                 },
-                 {
-                     id: 2,
-                     img: require('../../assets/images/songlist2.jpg'),
-                     tit: '这个世界很大，可是没人听我说话',
-                     num: '22.8万'
-                 },
-                 {
-                     id: 3,
-                     img: require('../../assets/images/songlist3.jpg'),
-                     tit: '中文DJ（电摇版）（车载DJ）开车驾车必听',
-                     num: '178.4万'
-                 },
-                 {
-                     id: 4,
-                     img: require('../../assets/images/songlist4.jpg'),
-                     tit: '好听的歌没有完整版，就像喜欢的人没有结局',
-                     num: '194.8万'
-                 },
-                 {
-                     id: 5,
-                     img: require('../../assets/images/songlist5.jpg'),
-                     tit: 'KORG P1000电子琴',
-                     num: '191.6万'
-                 },
-                 {
-                     id: 6,
-                     img: require('../../assets/images/songlist6.jpg'),
-                     tit: '维吾尔语精选歌曲',
-                     num: '138.1万'
-                 },
-             ],
-             songList:[
-                 {
-                     id:1,
-                     title: '致我们终将逝去的青春(2020重唱版)',
-                     msg: '张靓颖 - 致我们终将逝去的青春'
-                 },
-                 {
-                     id: 2,
-                     title: '如果我是海',
-                     msg: '李荣浩 - 麻雀'
-                 },
-                 {
-                     id: 3,
-                     title: '祝我快乐',
-                     msg: '汪苏泷 - 祝我快乐'
-                 },
-                 {
-                     id: 4,
-                     title: '星星之火',
-                     msg: '罗云熙 - 星星之火'
-                 },
-                 {
-                     id: 5,
-                     title: '晚来天欲雪',
-                     msg: '恋恋故人难 / 云の泣 '
-                 },
-                 {
-                     id: 6,
-                     title: '先知',
-                     msg: '田馥甄 - 先知'
-                 },
-                 {
-                     id: 7,
-                     title: '我行我素我爱你',
-                     msg: '郁可唯 - 我行我素我爱你'
-                 },
-                 {
-                     id: 8,
-                     title: 'PARADISE',
-                     msg: 'Ravi / 河成云 - PARADISE'
-                 },
-                 {
-                     id: 9,
-                     title: '睹物思人',
-                     msg: '武艺 - 睹物思人'
-                 },
-                 {
-                     id: 10,
-                     title: '尘埃',
-                     msg: '董嘉鸿 - 尘埃'
-                 },
-             ]
+         this.state = {
+              bannerList: [],
+              songList: [],
+              newSong:[],
          }
      }
+    //  调用挂载函数
+    componentDidMount(){
+        // 组件一加载就调取推荐歌单接口，轮播图，推荐新音乐接口
+        axios.all([personalized({limit:6}),banner(),getNewSongs()])
+        .then(axios.spread((songList,bannerList,newSong)=>{
+            // 获取轮播图
+            if (bannerList.code === 200) {
+                //  可以通过filter对数组进行过滤
+                let banners = bannerList.banners.filter((item, i) => i < 4)
+                this.setState({
+                    bannerList: banners
+                }, () => {
+                    //调用轮播图
+                    let swiper = new Swiper('.swiper-container', {
+                        autoplay: {
+                            delay: 2000,
+                        },
+                        loop: true,
+                        pagination: {
+                            el: '.swiper-pagination',
+                        }
+                    });
+                })
+            }
+            // 推荐歌单
+            if (songList.code === 200) {
+                this.setState({
+                    songList: songList.result
+                })
+            }
+            // 获取最新音乐
+            if (newSong.code === 200) {
+                this.setState({
+                    newSong: newSong.result
+                })
+            }
+        })
+
+        )
+        // this.getPersonalized()
+        // //调用轮播图
+        // this.getBanner()
+        // // 调用获取新音乐
+        // this.getnewSongs()
+    }
+    // 封装一个获取推荐歌单的接口
+    // getPersonalized(){
+    //     personalized({
+    //         limit:6
+    //     })
+    //         .then(res=>{
+    //             if(res.code===200){
+    //                 this.setState({
+    //                     songList:res.result
+    //                 })
+    //             }
+    //         })
+    // }
+     //获取一个轮播图的接口
+    //  getBanner() {
+    //      banner()
+    //          .then(res => {
+    //              console.log(res, '轮播图')
+    //              if (res.code === 200) {
+    //                 //  可以通过filter对数组进行过滤
+    //                 let banners = res.banners.filter((item,i)=>i<4)
+    //                  this.setState({
+    //                      bannerList: banners
+    //                  }, () => {
+    //                      //调用轮播图
+    //                      let swiper = new Swiper('.swiper-container', {
+    //                          autoplay: {
+    //                              delay: 2000,
+    //                          },
+    //                          loop: true,
+    //                          pagination: {
+    //                              el: '.swiper-pagination',
+    //                          }
+    //                      });
+    //                  })
+    //              }
+    //          })
+    //  }
+    //  封装一个获取新音乐的事件
+    // getnewSongs(){
+    //     getNewSongs()
+    //     .then(res=>{
+    //         if(res.code===200){
+    //             console.log(res)
+    //         }
+    //     })
+    // }
     render(){
+        const {songList,bannerList,newSong} = this.state
             return (<div className='home'>
+                
+                <div className="swiper-container">
+                    <div className="swiper-wrapper">
+                        {
+                            bannerList.map(item => {
+                                return <div key={item.imageUrl} className="swiper-slide">
+                                    <img className='imgUrl' src={item.imageUrl} alt="" />
+                                </div>
+                            })
+                        }
+                    </div>
+                    {/* 分页器。如果放置在swiper-container外面，需要自定义样式。 */}
+                    <div className="swiper-pagination"></div>
+                </div>
                 <h2 className="home_title">推荐歌单</h2>
                 <div className="songTable">
                         {
-                            this.List.songInfo.map(item=>{
+                            songList.map(item=>{
                                 return<div className="item" key={item.id}>
-                                    <img src={item.img} alt=""/>
-                                <span>{item.tit}</span>
-                            <span className="num">{item.num}</span>
+                                    <img src={item.picUrl} alt=""/>
+                                    <span className="de">{item.name}</span>
+                                    {
+                                        item.playCount.toString().length > 8 ? < span className = "u-earp remd_lnum" >  {Number(item.playCount/
+                                        10000000).toFixed(1)
+                                        }
+                                        亿 </span> :
+                                        < span className = "u-earp remd_lnum"> {Number(item.playCount/10000).toFixed(1)}万</span>
+                                    }
+                                    
                                 </div>
                             })
                         }
@@ -113,11 +149,30 @@ import '../../assets/css/home.css'
                 <h2 className="home_title">最新音乐</h2>
                 <div>
                     <div>{
-                        this.List.songList.map(item=>{
+                        newSong.map(item=>{
                             return <div className = "con" key={item.id}>
                                 <div className="left">
-                        <div className="f-thide sgtl">{item.title}</div>
-                                    < div className="f-thide sginfo"> < i className = "u-hmsprt sghot" > </i>{item.msg}
+                        <div className="f-thide sgtl">{item.song.name}
+                        {
+                            item.song.alias ? 
+                                item.song.alias.map(item=>{
+                                    return <span style={{
+                                        color:'#888'
+                                    }} key={item}>({item})</span>
+                                })
+                             : ''
+                        }
+                        </div>
+                                    < div className="f-thide sginfo"> < i className = "u-hmsprt sghot" > </i>
+                                    {
+                            item.song.artists ? 
+                                item.song.artists.map(item => {
+                                    return <span style={{
+                                        color:'#888'
+                                    }} key={item.id}>{item.name} </span>
+                                })
+                             : ''
+                        }-{item.song.album.name}
                                     </div>
                                 </div>
                                 <div className="right">

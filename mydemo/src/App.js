@@ -14,7 +14,7 @@ import {Switch,Route,Redirect} from 'react-router-dom'
         {/* 一级路由出口 */}
         <Switch>
           <Route path='/index' component={Index}></Route>
-          <Route path='/list' component={List}></Route>
+          {/* <Route path='/list' component={List}></Route> */}
           {/* 动态路由 */}
           <Route path='/play/:id' component={Play}></Route>
           <Redirect to='/index'></Redirect>

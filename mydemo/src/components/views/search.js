@@ -1,70 +1,102 @@
 import React from 'react'
 import '../../assets/css/search.css'
+import {searchHot,searchInfo} from '../../util/axios'
  class Search extends React.Component{
      constructor(){
          super()
          this.state={
-             hotList:[
-                 {
-                     id:1,
-                     msg: 'Taylor Swift'
-                 },
-                 {
-                     id: 2,
-                     msg: 'Billie Eilish'
-                 },
-                 {
-                     id: 3,
-                     msg: '无滤镜'
-                 },
-                 {
-                     id: 4,
-                     msg: '潘玮柏'
-                 },
-                 {
-                     id: 5,
-                     msg: '天外来物'
-                 },
-                 {
-                     id: 6,
-                     msg: 'Troye Sivan'
-                 },
-                 {
-                     id: 7,
-                     msg: '亚运会歌征集'
-                 },
-                 {
-                     id: 8,
-                     msg: '上半年音乐榜单'
-                 },
-                 {
-                     id: 9,
-                     msg: '要我怎么办'
-                 },
-                 {
-                     id: 10,
-                     msg: '2020毕业音乐会'
-                 },
-             ]
+             searchHotList:[],
+             searchList:[]
          }
+         this.inpVal = React.createRef()
      }
+    //  挂载
+    componentDidMount(){
+        // 调取热门搜索
+        this.get_search_hot()
+    }
+    //  获取一个热门搜索事件
+    get_search_hot(){
+        searchHot()
+        .then(res=>{
+            if(res.code==200){
+                console.log(res,'热门标签')
+                 this.setState({
+                     searchHotList:res.result.hots
+                 })
+            }
+        })
+    }
+    // 封装一个搜索事件
+    goSearch(keywords){
+        // 给input赋值
+        this.inpVal.current.value = keywords
+        // 调取搜索接口
+        searchInfo({keywords})
+        .then(res=>{
+            if(res.code==200){
+                console.log(res,'搜索结果')
+                this.setState({
+                    searchList: res.result.songs
+                })
+            }
+        })
+    }
+    // 封装一个getInput
+    getInput(){
+        console.log(this.inpVal.current.value,'input内容')
+    }
+    // 清空事件
+    clearInfo(){
+        // input为空
+        this.inpVal.current.value = ''
+        this.setState({
+            searchList:[]
+        })
+    }
     render(){
-        const {hotList} = this.state
-            return (<div className='search'>
-                <div className="form">
-                    <i className="u-svg u-svg-srch"></i>
-                    <input className="searchInput" type="text" placeholder="搜索歌曲、歌手、专辑"/>
-                </div>
-                <div className="hotList">
+        const {searchHotList,searchList} = this.state
+        let valFlag = ''
+        if(this.inpVal.current){
+            valFlag = this.inpVal.current.value
+        }
+        let hotInfo = < div className = "hotList" >
                     <h3 className="hotTit">热门搜索</h3>
                     <ul className="list" >
                         {
-                            hotList.map(item=>{
-                                return <li key={item.id} className = "item" > < a> {item.msg} </a></li >
+                            searchHotList.map(item=>{
+                                return <li onClick={this.goSearch.bind(this,item.first)} key={item.first} className = "item" > <a> {item.first} </a></li >
                             })
                         }
                     </ul>
                 </div>
+            return (<div className='search'>
+                {/* 搜索框 */}
+                <div className="form">
+                    <i className="u-svg u-svg-srch"></i>
+                    <input className="searchInput" type="text" ref={this.inpVal} onInput={this.getInput.bind(this)} placeholder="搜索歌曲、歌手、专辑"/>
+                    {
+                        valFlag?<div className="cancel" onClick={this.clearInfo.bind(this)}><i>×</i></div> :''
+                    }
+                </div>
+                {/* 搜索列表 */}
+                <div>
+                
+                    <ul className="hotSearchlist">
+                        {
+                            searchList.length > 0 ? searchList.map(item=>{
+                            return <li key={item.id}><i className="u-svg u-svg-search"></i><span className="hotitem">{item.name}</span></li>
+                            }) : ''
+                        }
+                    </ul>
+                </div>
+                {/* 热搜标签 */}
+                <div>
+                    {
+                        searchList.length == 0 ? hotInfo : ''
+                    }
+                </div>
+                
             </div>)
         }
 }
