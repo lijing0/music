@@ -5,6 +5,7 @@ import './App.css'
 import Index from './components/pages/index'
 import List from './components/pages/list'
 import Play from './components/pages/play'
+import Detail from './components/pages/datail'
 //引入路由插件中相关的属相方法
 import {Switch,Route,Redirect} from 'react-router-dom'
 //app.js中不要写任何内容 会影响其他组件 我们可以渲染一级路由的出口
@@ -14,9 +15,10 @@ import {Switch,Route,Redirect} from 'react-router-dom'
         {/* 一级路由出口 */}
         <Switch>
           <Route path='/index' component={Index}></Route>
+          <Route path='/detail' component={Detail}></Route>
           {/* <Route path='/list' component={List}></Route> */}
           {/* 动态路由 */}
-          <Route path='/play/:id' component={Play}></Route>
+          <Route path='/play' component={Play}></Route>
           <Redirect to='/index'></Redirect>
         </Switch>
       </div>)

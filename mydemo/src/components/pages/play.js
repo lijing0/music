@@ -1,79 +1,183 @@
 import React from 'react'
-//querystring 模块提供用于解析和格式化 URL 查询字符串的实用工具
-import qs from 'querystring'
+//引入jq
+import $ from 'jquery'
 import '../../assets/css/play.css'
- class Search extends React.Component{
-    render(){
-            console.log(this) //?id=4&name=%E5%A4%8F%E5%A4%A9%E7%9A%84%E9%A3%8E 最终想要的形式 {id:1,name:'名字'}
-            //第一种方法 利用原生js获取参数
-            // //字符串截取 去掉？
-            // let queryStr = this.props.location.search.slice(1) //id=4&name=%E5%A4%8F%E5%A4%A9%E7%9A%84%E9%A3%8E
-            // //把字符串拆分成数组 以 & 为拆分
-            // let arrQuery = queryStr.split('&') //["id=4", "name=%E5%A4%8F%E5%A4%A9%E7%9A%84%E9%A3%8E"]
-            // //利用循环 拆分'='
-            // let obj = {}
-            // arrQuery.forEach(item=>{
-            //        let tempArr = item.split('=')
-            //        obj[tempArr[0]] = tempArr[1]
-            // })
-            // console.log(obj,"obj")
-            //第二个方法 利用node原生API
-            let queryStr = this.props.location.search.slice(1)
-            let obj = qs.parse(queryStr)
-            return (<div className='play'>
-                <div className="m-song">
-                    <div className="m-newsong">
-                        <div className="m-song-bg">
-                            <div className="m-scroll_wrapper m-song_nor j-songsrl">
-                                <div>
-                                    <div className="m-song_newfst">
-                                        <div>
-                                            <div className="m-song-wrap">
-                                                <div className="m-song-disc">
-                                                    <div className="m-song-turn">
-                                                        <div className="m-song-rollwrap">
-                                                            <div className="m-song-img ">
-                                                                < img className="u-img" src = "https://p1.music.126.net/7gmezveSn1Y31wDJKn-8CQ==/109951165181209954.jpg?imageView&thumbnail=360y360&quality=75&tostatic=0"
-                                                                alt = "" / >
-                                                            </div>
-                                                            <div className="m-song-lgour">
-                                                                <div className="m-song-light "></div>
-                                                            </div>
-                                                        </div>
-                                                        <span className="m-song-plybtn"></span>
-                                                    </div>
-                                                    <div className="m-song-clickarea"></div>
-                                                </div>
-                                                {/* 歌词 */}
-                                                <div>
-                                                    <div className="m-song-info">
-                                                        < h2 className = "m-song-h2" >
-                                                            <span className="m-song-sname">致我们终将逝去的青春 (2020重唱版)</span>
-                                                            <span className="m-song-gap">-</span>
-                                                            <b className="m-song-autr">张靓颖</b>
-                                                        </h2>
-                                                        <div className="m-song-lrc f-pr">
-                                                            <div className="m-song-scroll">
-                                                                <div className="m-song-iner">
-                                                                <p className="m-song-lritem j-lritem">荼蘼还没凋零 提醒我 紧紧抱着你</p>
-                                                                <p className="m-song-lritem j-lritem">世界还在下雨 嘲笑着 晴天的远行</p>
-                                                            </div>
-                                                            
-                                                            </div>
-                                                            
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+import axios from 'axios'
+import { getLyric, getUrl, getSongDetail } from '../../util/axios'
+class play extends React.Component {
+    constructor() {
+        super()
+        this.state = {
+            img: require('../../assets/images/needle-ip6.png'),
+            songUrl: '',
+            lyric: '',
+            songDetail: '',
+            flag: false, //用来控制播放和暂停
+            playTime:"00:00"
+        }
+        //创建ref
+        this.playIcon = React.createRef()
+        this.audio = React.createRef()
+    }
+    //组件一加载 就获取音乐的url和歌词
+    componentDidMount() {
+        axios.all([getLyric({ id: this.props.location.state.id }), getUrl({ id: this.props.location.state.id }), getSongDetail({ ids: this.props.location.state.id })])
+            .then(axios.spread((lyric, songUrl, songDetail) => {
+                console.log(lyric, '歌词')
+                console.log(songUrl, '音乐地址')
+                console.log(songDetail, 'songDetail')
+                if (lyric.code === 200) {
+                    let lyricInfo = lyric.lrc.lyric
+                    //创建一个去除数组[]的正则
+                    let reg = /\[(.*?)](.*)/g
+                    //定义一个对象
+                    let obj = {}
+                    //把字符串的每一处[]符号 都替换掉
+                    lyricInfo.replace(reg, (a, b, c) => {
+                        //a 查找的那一处
+                        //b 正则匹配的第一个
+                        //c正则匹配的第er个
+                        // [00:00.610]为什么你不在 aaaaaaaaa
+                        //  00:00.610 bbbbbbbb
+                        // 为什么你不在 cccccc
+                        //如果是对象 obj[b] = c   {00:00.610 : 为什么你不在}
+                        //字符串截取 截取出 00：00
+                        b = b.slice(0, 5)
+                        // console.log(a,'aaaaaaaaa')
+                        // console.log(b,'bbbbbbbb')
+                        // console.log(c,'cccccc')
+                        obj[b] = c
+                    })
+
+                    console.log(obj, '歌词转化之后的对象')
+                    this.setState({
+                        lyric: obj
+                    },()=>{
+                        let audio = this.audio.current
+                        //实时监听播放器的变化
+                        audio.ontimeupdate=()=>{
+                            //currentTime 当前正在播放的时间 以秒计
+                           // console.log(audio.currentTime,"我正在播放")
+                            //把播放器时间转化成 00:00 这种格式
+                            let nowTime = this.tranTime(audio.currentTime)
+                        //    console.log(nowTime,"我正在播放")
+                            //  if (nowTime in this.state.lyric) {
+                            //              this.setState({
+                            //                  playTime: nowTime
+                            //              }, () => {
+                            //                  //歌词滚动
+                            //                  this.moveLyric()
+                            //              })
+                            //          }
+
+                            if(this.updater.isMounted(this)){
+                                if (nowTime in this.state.lyric) {
+                                    this.setState({
+                                        playTime: nowTime
+                                    }, () => {
+                                        //歌词滚动
+                                        this.moveLyric()
+                                    })
+                                }
+                            }else{
+                                return
+                            }
+                        }
+                    })
+                }
+                if (songUrl.code === 200) {
+                    this.setState({
+                        songUrl: songUrl.data[0].url
+                    })
+                }
+                if (songDetail.code === 200) {
+                    this.setState({
+                        songDetail: songDetail.songs[0]
+                    })
+                }
+            }))
+    }
+    //封装一个时间转化的事件
+    tranTime(timer){
+        let minute =( Math.floor(timer/60)+'').padStart(2,'0')
+        let second = ( Math.floor(timer%60)+'').padStart(2,'0')
+        return `${minute}:${second}`
+    }
+    //歌词滚动事件
+    moveLyric(){
+        //取出带active的p标签
+        let active = document.getElementsByClassName('active')[0]
+        //查找出active索引
+        let index = $('.geci_box').children().index(active)
+        let offset =31
+        if(active){
+            if(active.offsetTop>offset){
+                console.log('进来')
+                //移动Y 轴 //transform: translateY(10px);
+                $('.geci_box').css("transform",`translateY(-${index*offset}px)`)
+            }
+        }
+    }
+    //创建一个播放事件
+    toPlay() {
+        //当用户点击开关，取反
+        this.setState({
+            flag: !this.state.flag
+        }, () => {
+            if (this.state.flag) {
+                //flag是真就应该暂停音乐
+                this.audio.current.pause()
+                //出现播放按钮
+                this.playIcon.current.style.display = 'block'
+            } else {
+                //flag是假就应该播放音乐
+                this.audio.current.play()
+                //隐藏播放按钮
+                this.playIcon.current.style.display = 'none'
+            }
+        })
+
+    }
+    render() {
+        const { lyric, songUrl, songDetail, img ,playTime} = this.state
+        return (<div className='play'>
+            <div className="play_top">
+                <img src={img} />
+            </div>
+            <div className="play_img_all" >
+                <i ref={this.playIcon} className="play_icon"></i>
+                <div className="play_img_box" onClick={this.toPlay.bind(this)}>
+                    <div className="small_img">
+                        {songDetail.al ? <img src={songDetail.al.picUrl} alt="" /> : ''}
                     </div>
                 </div>
-                
-            </div>)
-        }
+            </div>
+            <div className="play_txt">
+                <div className="play_txt_name">
+                    {songDetail.al ? <div>{songDetail.al.name}-<span className="singer">{songDetail.ar[0].name}</span></div> : ''}
+                </div>
+                <div className="play_txt_geci">
+                    <div className="geci_box">
+                        {/* 把对象转化成数组之后 循环遍历  Object.entries 把对象转化成枚举型的数组 类似for in*/}
+                        {
+                            Object.entries(lyric).map((item, i) => {
+                                //当播放器时间和歌词的时间匹配的时候 加高亮
+                                if(playTime == item[0]){
+                                    return <p key={i} className='active'>{item[1]}</p>
+                                }else{
+                                    return <p key={i}>{item[1]}</p>
+                                }
+                                
+                            })
+                        }
+                        <p ></p>
+                    </div>
+                </div>
+            </div >
+            <div className="audio_box">
+                <audio ref={this.audio} src={songUrl} autoPlay></audio>
+            </div >
+        </div >)
+    }
 }
- export default Search
+export default play

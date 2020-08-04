@@ -1,254 +1,115 @@
-body{
-    background-image: url(http://p4.music.126.net/GEOYRs0w2D1h2dvzlWoWvg==/109951163497786577.jpg);
-    opacity: 1;  
-}
-.play{
-    width: 7.5rem;
-    height: 13.34rem;
-}
-.m-newsong {
-    position: absolute;
-    top: 0;
+.play {
     left: 0;
-    right: 0;
-    bottom: 0;
-    min-width: 320px;
-    overflow: hidden;
-}
-element.style {
-    background-image: url(//music.163.com/api/img/blur/109951165181209954);
-    opacity: 1;
-}
-
-.m-song .m-song-bg {
-    /* background-color: #161824; */
-    background-position: 50%;
-    background-repeat: no-repeat;
-    background-size: auto 100%;
-    -webkit-transform: scale(1.5);
-    -ms-transform: scale(1.5);
-    transform: scale(1.5);
-    -webkit-transform-origin: center top;
-    -ms-transform-origin: center top;
-    transform-origin: center top;
     position: fixed;
-    left: 0;
+    background: #464547;
     right: 0;
     top: 0;
-    height: 100%;
-    overflow: hidden;
-    z-index: -1;
-    -webkit-transition: opacity .3s linear;
-    transition: opacity .3s linear;
-    z-index: 1;
-}
-.m-song .m-song-bg:before {
-    content: " ";
-    position: absolute;
-    left: 0;
-    right: 0;
     bottom: 0;
-    top: 0;
-    background-color: rgba(0, 0, 0, .5);
-}
-.m-song_nor {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 60px;
-    overflow: hidden;
-    z-index: 21;
+    z-index: 150;
 }
 
-.m-scroll_wrapper {
-    overflow: hidden;
-}
-.m-scroll_scroller_vertical {
-    position: absolute;
-    left: 0;
-    top: 0;
-    min-height: 100%;
-    width: 100%;
-}
-
-.m-scroll_scroller {
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    z-index: 1;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    -webkit-text-size-adjust: none;
-    -ms-text-size-adjust: none;
-    text-size-adjust: none;
-}
-.m-song .m-song_newfst {
+.play .top {
     position: relative;
-    padding-bottom: 12px;
-    box-sizing: border-box;
-    height: 6.07rem;
 }
-.m-song-wrap {
-    padding-top: 70px;
+
+.play .play_top img {
+    position: absolute;
+    width: 96px;
+    height: 137px;
+    left: 38%;
+    margin-left: 25px;
+    z-index: 9;
 }
-.m-song-disc {
+
+.play_img_box {
+    margin: 70px auto 0;
     width: 296px;
     height: 296px;
+    background: url("../../assets/images/disc-ip6.png");
+    background-size: 296px;
+    overflow: hidden;
 }
 
-.m-song-disc {
+.play_img_all {
     position: relative;
-    width: 248px;
-    height: 248px;
-    margin: 0 auto;
 }
-.m-song-turn {
-    width: 100%;
-    height: 100%;
-}
-.m-song-turn:before {
-    background-image: url(http://s3.music.126.net/mobile-new/img/disc-ip6.png?69796123ad7cfe95781ea38aac8f2d48=);
-}
-.m-song-rollwrap {
-    width: 184px;
-    height: 184px;
-    margin: -92px 0 0 -92px;
-}
-.m-song-rollwrap {
-    position: absolute;
-    width: 150px;
-    height: 150px;
-    left: 50%;
-    top: 50%;
-    z-index: 1;
-    margin: -75px 0 0 -75px;
-}
-.m-song-img {
-    width: 100%;
-    height: 100%;
+
+.play_img_box .small_img {
+    margin: 55px auto 0;
+    width: 191px;
     border-radius: 50%;
     overflow: hidden;
-    background: url(http://s3.music.126.net/mobile-new/img/disc_default.png?7c9b3adc16f5485c2bfbe8a540534188=) no-repeat;
-    background-size: contain;
-}
-.u-img {
-    width: 100%;
-    vertical-align: middle;
-}
-abbr,
-body,
-fieldset,
-html,
-iframe,
-img {
-    border: 0;
-}
-.m-song-lgour,
-.m-song-light {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    z-index: 3;
-}
-.m-song-light {
-    background-image: url(http://s3.music.126.net/mobile-new/img/disc_light-ip6.png?996fc8a2bc62e1ab3f51f135fc459577=);
 }
 
-.m-song-light {
-    background: url(http://s3.music.126.net/mobile-new/img/disc_light.png?2bb24f3fd11569809b817b4988f12bc7=) no-repeat;
-    background-size: contain;
-}
-
-.m-song-lgour,
-.m-song-light {
+.play_img_all .play_icon {
     position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    z-index: 3;
-}
-.m-song-plybtn {
-    width: 56px;
-    height: 56px;
-}
-.m-song-plybtn {
-    position: absolute;
-    width: 50px;
+    display: none;
+    left: 37%;
+    top: 34%;
+    margin-left: 25px;
+    margin-top: 25px;
     height: 50px;
-    left: 50%;
-    top: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    z-index: 10;
-    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKgAAACoCAMAAABDlVWGAAABJlBMVEUAAAAAAAD////l5eX///9iYmKDg4Pn5+f///9YWFj////09PT////4+Pjt7e3///////9oaGhBQUH////////////////CwsIaGhr///8xMTEkJCT////7+/vp6en///////////////+srKyoqKienp58fHz////y8vKTk5P///8EBAT////////////////V1dW3t7f////////////////////v7++jo6N9fX3///////+UlJT////s7Oz////Nzc3///////+RkZGPj495eXkTExP////////29vb////k5OTPz882Njb////////////c3Nz///////9ycnJsbGz///9dXV3////////Q0ND///9QUFD///////////////////9FeiN6AAAAYXRSTlNmAP3c+oWT3ueB9vA19ealRId5EQbuurpu83RxD/nh05dfAquooo+M7JtzaSolE+vMspJ3Wj7w6KSQj6ucKeXNxLWnmpmObVYd8t3axXZRSt7TvbKLideCeSzHnn4V3Nh6YarbPAAABlRJREFUeNrU14lWEmEYh/GXcdj3HQTZRCkS913UNE2zbLd9Oc/930Q2LmVpwPAC03MD/M5835n/IC6dkqHnzcVoZvdkLp2HfHruZDcTXWw+DyVdOilAt6uNjI8782Ua1W2XjTShtdDSmzRdlH6zFKq5bKQBTS5H57gqXJrP1tsb7kShkBPJFQoJ90a7np0vhblqLrrc8R7oQ4vVPZOLIp8mp8flzsanJ59FuMjcqxZdHVKFxvYDWK1lPQXpooInu4ZVYD/m6pAWNLn0DSvvekJ6KLHuxerb0qyrQwrQViV/oZzKSc/lpi6sgUrLdSN16MyWARBcOBWbnS4EAYytj67r1KGtqMUseaSvPCWLGr14u+pDZysmwFhc+i4+BmBWZgcATTXTFvO9qOS3qOlmShu68g7A6xa13F6A7yuq0ORnA9jZENU2dgDjc1IPGvMB4QNR7+AJ4IspQVObBjDmF+Wur6qxmdKAbpeBoEcGlCcIlLf7hx7lOzxOlYeaP+oTmmoYQFsGWhswGql+oMUMEInLgItHgEzRPvS43OHYVY+/fGwXGvIBkzKU6oAvZA8aywOPZEg9AvIxO9AXAZg4lKF1OAGBF71DX5jw5EyG2NkTMJ/3Co2ZcM8tQ819D8xYb9CVgA2nijSw0gs0tArBzk59aRBWQ91Dj30QjssIiofBd9wttFiGiTMZSWcTUC52B629Bg5lRB0Cr2tdQRvAfRlZ94FGN9AjA+oywupgHHWGzuRhTEbaGORnOkFTZYj4ZaT5I1BOdYBuAnEZcXFg89/QmAFtGXltMGL/ghZ9I7+g19fUV/wHtAJBvzggfxAqd0NXDPCII/KAsXIXNPXOIQd/efjvUndAmxB2xMH/zB+G5u3Qr2k4EMd0AOmvt0IrsCMOagcqt0FbJkyLg5oGs3ULNApecVReiP4NnTHALY7KDcbHv6BbDno1XTUGW39CWwa8F4flB6P1B3TRgQ/UeqSLN6GzAQd83f1dHAKzN6AfoCQOrARLN6Andr9GpiITT9/KwPLAye/QGATFTusAxsOCDKogxH6D7sOC2GkNq+B9GVALsP8LWgzAqdjJ4LJXCRlIpxAoXkOrtteT6yYmH8gg8kL1GroHU/1CoTSQBZ6CvSto0oRc/1DM7GNRLwdm8hK6DF5RgMI9j6jnheVLaBTWdaAwPy7KrUP0Alqbg4QWlPCU6JaAuZoFDcGaqEHh6RdRLQIhC/oBsppQzAXVN1UWlixoBjyqUIhozr8H3vyE1lYhpwnVnv8CpH9CZyAi2lAIPtK8pDPn0Cp8UoWqz/8zqJ5DGzCpCdWf/0lonEMzMK0J1Z//acicQ30wrgnVn/9x8LkkCWFRherPfxiSEgKvLlR//r0QkmWY14Xqz/88LEsTsqpQ/fm3RlQWoa4L1Z//OixKFNq6UP35vw9RycDGMKAYD3P9vEhlF9y6UP35d8OuvISELlR//hPwUqxh0oTqz781TbIKueFB4em4rb/Mq5IfMpRn0nOPIS+ADBUatvcz/w/0B/X2VgMACMNQ9AMnWOADKwT/QuahyZYcDcte7e146X9W+vFmWmEzOeOJGfjMCmWOEubMYw7no7wizHPHvMuMAMFIOo5IxsiOjJDLSOOM2cDYN44hxliMjGnL2OAOWMCgGgz84uBEDKDFIG8ORLhzLPO2Y5kK6PpMdJiBsR28nQkMOBEMJtTixISY4JUTZWPCgVXevesgCINhGG7dZPLEIg7GRRsMTsaoMTEOnmLUuBgn+e//JuTHGt0aKT3y3QIFpj6vO9ctnbnAmr9PIysefn0E0PfhkjW92HFtnQHULn5AAG9aISZGF3NaQYxVrInRrcVYBW4H5vkPEPIfuIV5UGXhClHT8Qv9oXQ/MckoTfb+wVTGqK8ZUl9+4mmUnpGj03pOmzlH5y/w5w6ZiAil+G9qA0KpkfWMTxKsJ6530wel3try9CwjSscg27BTDcw321gHjzyuEjj9IbwP1hPeDqHo2abP0pn5XMR/NhTB/fyo2gv3q0gh1JSkEHCrUuMSG1VxCdxDOtfR1ZDr4AGUwIUACi5JJZMyx1RHUgY3kIn0LBuFQk2EFlv7J3t0+id7JPi86wlJsfm9FUVbQrZR1LrPmQ0hKZfSXC7Fzr5LeD7uGoYBQBCGV56PS2g5ewGy+NkUNbjr9gAAAABJRU5ErkJggg==) 0 0 no-repeat;
-    background-size: contain;
+    width: 50px;
+    background: url("../../assets/images/list_sprite.png") no-repeat;
+    z-index: 99;
 }
-.m-song-plybtn:after {
-    content: "";
-    display: block;
-    position: absolute;
+
+.play_img_box .small_img img {
+    width: 191px;
+    height: 191px;
 }
-.m-song-clickarea {
-    position: absolute;
-    width: 100%;
-    top: 0;
-    left: 0;
-    bottom: 52px;
-    z-index: 10;
-    margin-bottom: env(safe-area-inset-bottom);
-}
-.m-song-info {
-    width: 7.5rem;
+
+.play_txt {
+    padding: 0 15px 20px;
     margin-top: 25px;
 }
-.m-song-h2 {
-    font-size: 18px;
+
+.play_txt_name {
+    text-align: center;
+    font-size: 16px;
+    line-height: 25px;
+    height: 25px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #fff;
 }
 
-.m-song-h2 {
-    text-align: center;
-    font-size: 15px;
-    line-height: 1.1;
-    color: #fefefe;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+.play_txt_name .singer {
+    color: hsla(0, 0%, 100%, 0.6);
 }
-.m-song-gap {
-    margin: 0 4px;
-}
-.m-song-autr,
-.m-song-pure {
-    font-size: 16px;
-}
-.m-song-lrc {
+
+.play_txt_geci {
     position: relative;
     margin-top: 14px;
-}
-.m-song-scroll {
-    font-size: 16px;
-}
-
-.m-song-scroll {
-    line-height: 1.5;
-    font-size: 13px;
-    height: 72px;
-    overflow: hidden;
-    -webkit-mask: -webkit-linear-gradient(top, #000, #000 70%, rgba(0, 0, 0, 0));
+    height: 130px;
+    overflow: auto;
 }
 
-.m-song-lremp,
-.m-song-scroll {
+.geci_box {
+    height: 120px;
     text-align: center;
-    color: hsla(0, 0%, 100%, .6);
+    width: 100%;
+    transition: 0.5s;
 }
-.m-song-lritem {
-    padding-bottom: 8px;
+
+.geci_box p {
+    font-size: 16px;
+    color: #fff;
+    height: 31px;
+    line-height: 31px;
+    overflow: hidden;
+}
+
+.audio_box {
+    padding-bottom: 50px;
+    text-align: center;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.active {
+    color: yellow !important;
 }

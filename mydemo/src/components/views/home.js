@@ -110,6 +110,24 @@ import '../../assets/css/home.css'
     //         }
     //     })
     // }
+    // 跳转到歌单详情事件
+    goDetail(id){
+        this.props.history.push({
+            pathname: '/detail',
+            state:{
+                id
+            }
+        })
+    }
+    //封装一个播放事件
+    goPlay(id) {
+        this.props.history.push({
+            pathname: '/play',
+            state: {
+                id
+            }
+        })
+    }
     render(){
         const {songList,bannerList,newSong} = this.state
             return (<div className='home'>
@@ -131,12 +149,12 @@ import '../../assets/css/home.css'
                 <div className="songTable">
                         {
                             songList.map(item=>{
-                                return<div className="item" key={item.id}>
+                                return<div onClick={this.goDetail.bind(this,item.id)} className="item" key={item.id}>
                                     <img src={item.picUrl} alt=""/>
                                     <span className="de">{item.name}</span>
                                     {
                                         item.playCount.toString().length > 8 ? < span className = "u-earp remd_lnum" >  {Number(item.playCount/
-                                        10000000).toFixed(1)
+                                        100000000).toFixed(1)
                                         }
                                         亿 </span> :
                                         < span className = "u-earp remd_lnum"> {Number(item.playCount/10000).toFixed(1)}万</span>
@@ -150,7 +168,7 @@ import '../../assets/css/home.css'
                 <div>
                     <div>{
                         newSong.map(item=>{
-                            return <div className = "con" key={item.id}>
+                            return <div onClick={this.goPlay.bind(this,item.id)} className = "con" key={item.id}>
                                 <div className="left">
                         <div className="f-thide sgtl">{item.song.name}
                         {

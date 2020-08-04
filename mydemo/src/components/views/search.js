@@ -45,6 +45,9 @@ import {searchHot,searchInfo} from '../../util/axios'
     // 封装一个getInput
     getInput(){
         console.log(this.inpVal.current.value,'input内容')
+        this.setState({
+            
+        })
     }
     // 清空事件
     clearInfo(){
@@ -54,6 +57,22 @@ import {searchHot,searchInfo} from '../../util/axios'
             searchList:[]
         })
     }
+    // 键盘事件
+    enter(e){
+        if (e.keyCode == 13 && e.target.value!='') {
+            // 当用户输入回车的时候 要调取搜索接口
+            this.goSearch(e.target.value)
+        }
+    }
+      //封装一个播放事件
+      goPlay(id) {
+          this.props.history.push({
+              pathname: '/play',
+              state: {
+                  id
+              }
+          })
+      }
     render(){
         const {searchHotList,searchList} = this.state
         let valFlag = ''
@@ -74,7 +93,7 @@ import {searchHot,searchInfo} from '../../util/axios'
                 {/* 搜索框 */}
                 <div className="form">
                     <i className="u-svg u-svg-srch"></i>
-                    <input className="searchInput" type="text" ref={this.inpVal} onInput={this.getInput.bind(this)} placeholder="搜索歌曲、歌手、专辑"/>
+                    <input className="searchInput" type="text" ref={this.inpVal} onInput={this.getInput.bind(this)} onKeyUp={this.enter.bind(this)} placeholder="搜索歌曲、歌手、专辑"/>
                     {
                         valFlag?<div className="cancel" onClick={this.clearInfo.bind(this)}><i>×</i></div> :''
                     }
@@ -85,7 +104,7 @@ import {searchHot,searchInfo} from '../../util/axios'
                     <ul className="hotSearchlist">
                         {
                             searchList.length > 0 ? searchList.map(item=>{
-                            return <li key={item.id}><i className="u-svg u-svg-search"></i><span className="hotitem">{item.name}</span></li>
+                            return <li onClick={this.goPlay.bind(this,item.id)} key={item.id}><i className="u-svg u-svg-search"></i><span className="hotitem">{item.name}</span></li>
                             }) : ''
                         }
                     </ul>

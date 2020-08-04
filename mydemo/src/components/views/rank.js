@@ -12,13 +12,6 @@ import {NavLink} from 'react-router-dom'
             hotSongList:[]
          }
      }
-    //  封装一个动态路由跳转的方法
-    goPlay(id){
-        // 在props属性中 看到了路由的属性和方法
-        // push往历史记录中添加一条记录 replace替换当前这条记录
-        this.props.history.push(`/play/${id}`)
-        // this.props.history.replace(`/play/${id}`)
-    }
     // 挂载
     componentDidMount(){
         this.gethotlist()
@@ -46,6 +39,15 @@ import {NavLink} from 'react-router-dom'
             }
         })
     }
+    // 封装一个播放事件
+    goPlay(id){
+        this.props.history.push({
+            pathname:'/play',
+            state:{
+                id
+            }
+        })
+    }
     render(){
         const {hottime,hotSongList} = this.state
             return (<div className='rank'>
@@ -58,10 +60,7 @@ import {NavLink} from 'react-router-dom'
                 <div >
                     {
                         hotSongList.map((item,i) => {
-                        return <div className="content" key={item.id} onClick={this.goPlay.bind(this,item.id)}>
-                    {/* <div className={item.id > 3 ? item.className = "con_left1" : item.className = "con_left"}>
-                        {item.id}
-                    </div> */}
+                        return <div onClick={this.goPlay.bind(item.id)} className="content" key={item.id} onClick={this.goPlay.bind(this,item.id)}>
                     <div className={i>=3?item.className = "con_left1" : item.className = "con_left"}>{i<9?'0'+(i+1):(i+1)}</div>
                     <div className="line">
                         <div className="center">
